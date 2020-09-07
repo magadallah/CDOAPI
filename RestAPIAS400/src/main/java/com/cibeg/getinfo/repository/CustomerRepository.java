@@ -26,7 +26,7 @@ public class CustomerRepository {
 
 	public List<String[]> getCustAct(String cnum) {
 		List<String[]> custActDetails = new ArrayList<String[]>();
-		custActDetails.addAll(jdbcTemplate.query("select cust.CRNM , cust.BBCNA1 , cust.BBCNA3 , act.TACNO , act.CCY , act.BRCA , act.LDBL/100 from T24CUSPF cust , T24ACCPF act where cust.TCNUM = act.TCNUM and cust.TCNUM = " + cnum
+		custActDetails.addAll(jdbcTemplate.query("select cust.CRNM , cust.BBCNA1 , cust.BBCNA3 , act.TACNO , act.CCY , act.BRCA , act.LDBL/100 from customer_samp , T24ACCPF act where cust.TCNUM = act.TCNUM and cust.TCNUM = " + cnum
 				, (rs, rowNum) -> new String[] {rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)}));
 		return custActDetails;
 	}
